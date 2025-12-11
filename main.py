@@ -75,12 +75,13 @@ def get_vehicle_details(rc_number: str) -> dict:
 def api():
     rc_number = request.args.get("rc_number")
 
+    # MODIFIED BLOCK: Returns a friendly welcome message if no RC is provided
     if not rc_number:
         return jsonify({
             "credit": "API DEVELOPER: @mowa",
-            "status": "error",
-            "message": "Missing required parameter: rc_number"
-        }), 400
+            "status": "online",
+            "message": "Welcome! Usage: /?rc_number=YOUR_RC_HERE"
+        }), 200
 
     details = get_vehicle_details(rc_number)
 
